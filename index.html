@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时钟-LHY</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #ffffff;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .time-section {
+            display: inline-block;
+            background-color: #222;
+            padding: 4vh;
+            border-radius: 4vw;
+            box-shadow: 0 0 20vw rgba(0, 0, 0, 0.5);
+            font-size: 18vw;
+            margin: 1vw;
+        }
+
+        #date {
+            color: #999;
+            font-size: 7.2vw;
+            margin: 0;
+        }
+
+        #date strong {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var hours = ('0' + now.getHours()).slice(-2); // 保持两位数格式
+            var minutes = ('0' + now.getMinutes()).slice(-2); // 保持两位数格式
+            var seconds = ('0' + now.getSeconds()).slice(-2); // 保持两位数格式
+            var year = now.getFullYear();
+            var month = ('0' + (now.getMonth() + 1)).slice(-2); // 保持两位数格式
+            var day = ('0' + now.getDate()).slice(-2); // 保持两位数格式
+            var weekDay = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][now.getDay()];
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+            document.getElementById('date').innerHTML = "<strong>" + year + '年' + month + '月' + day + '日</strong> ' + "<strong>" + weekDay + "</strong>";
+        }
+        setInterval(updateClock, 100);
+    </script>
+</head>
+<body>
+    <div id="clockContainer">
+        <div class="time-section" id="hours"></div>
+        <div class="time-section" id="minutes"></div>
+        <div class="time-section" id="seconds"></div>
+    </div>
+    <p id="date"></p>
+</body>
+</html>
